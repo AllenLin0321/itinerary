@@ -1,9 +1,13 @@
-import Image from "next/image";
+"use client";
+import App from "@/app/App";
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      Hello World!
-    </main>
+    <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center border border-slate-400 rounded px-6 py-2 mt-4 min-w-[300px] max-w-[500px]'>
+        <h1 className='text-slate-600 my-1'>送機行程</h1>
+        <App />
+      </div>
+    </div>
   );
 }
