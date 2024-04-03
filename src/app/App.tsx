@@ -34,7 +34,13 @@ export default function App() {
         type='text'
         register={register}
         name='flightNumber'
-        config={{ required: ERROR_MESSAGES.REQUIRED }}
+        config={{
+          required: ERROR_MESSAGES.REQUIRED,
+          pattern: {
+            value: /^[a-zA-Z0-9]+$/,
+            message: "只可輸入英文大小寫以及數字",
+          },
+        }}
         errors={errors}
       />
 
@@ -44,7 +50,13 @@ export default function App() {
         type='text'
         register={register}
         name='name'
-        config={{ required: ERROR_MESSAGES.REQUIRED }}
+        config={{
+          required: ERROR_MESSAGES.REQUIRED,
+          pattern: {
+            value: /^[a-zA-Z\s]+$/,
+            message: "只可輸入英文大小寫以及空白",
+          },
+        }}
         errors={errors}
       />
       <Input
@@ -54,8 +66,10 @@ export default function App() {
         name='phone'
         config={{
           required: ERROR_MESSAGES.REQUIRED,
-          minLength: 10,
-          maxLength: 10,
+          pattern: {
+            value: /^[0-9]+$/,
+            message: "只可接受數字",
+          },
         }}
         errors={errors}
       />
@@ -64,7 +78,13 @@ export default function App() {
         type='text'
         register={register}
         name='id'
-        config={{ required: ERROR_MESSAGES.REQUIRED }}
+        config={{
+          required: ERROR_MESSAGES.REQUIRED,
+          pattern: {
+            value: /^[a-zA-Z0-9]+$/,
+            message: "只可輸入英文大小寫以及數字",
+          },
+        }}
         errors={errors}
       />
       <Label label='乘車備註'>
