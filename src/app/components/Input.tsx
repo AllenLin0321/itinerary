@@ -9,11 +9,15 @@ export default function Input({
   errors,
   ...rest
 }) {
+  console.log("errors: ", errors[name]);
+
   return (
     <>
       <Label label={label} />
       <input
-        className='text-slate-600 text-sm leading-loose w-full'
+        className={`text-slate-600 text-sm leading-loose w-full ${
+          errors[name] && "border-red-500 border-2"
+        }`}
         {...rest}
         {...register(name, { ...config })}
       />
