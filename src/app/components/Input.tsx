@@ -9,8 +9,6 @@ export default function Input({
   errors,
   ...rest
 }) {
-  console.log("errors: ", errors[name]);
-
   return (
     <>
       <Label label={label} />
