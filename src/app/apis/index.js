@@ -9,3 +9,12 @@ export const getItineraryApi = ({ airlineID, flightNumber }) => {
     },
   });
 };
+
+export const getAllItineraryApi = () => {
+  return axios.get("/v2/Air/FIDS/Airport/Departure/TPE", {
+    params: {
+      $orderby: "ScheduleDepartureTime",
+      $format: "JSON",
+    },
+  });
+};
