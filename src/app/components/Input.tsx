@@ -19,7 +19,7 @@ const Input: React.FC<Props> = ({
   type,
   ...rest
 }) => {
-  const error = errors && errors[name];
+  const error = errors && errors[name as keyof typeof errors];
   return (
     <>
       <Label label={label} />
@@ -27,7 +27,7 @@ const Input: React.FC<Props> = ({
       <input
         type={type}
         className={`text-slate-600 text-sm leading-loose w-full ${
-          errors[name] && "border-red-500 border-2"
+          !!error && "border-red-500 border-2"
         }`}
         {...rest}
         {...register(name, { ...config })}

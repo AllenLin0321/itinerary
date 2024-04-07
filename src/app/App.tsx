@@ -1,14 +1,16 @@
 ﻿"use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
+
 import Label from "./components/Label";
 import Button from "./components/Button";
 import Input from "./components/Input";
 import ERROR_MESSAGES from "@/app/constants/errorMessages";
-import { getItineraryApi, getAllItineraryApi } from "@/app/apis/index";
 import CheckCircleIcon from "@/app/icons/CheckCircleIcon";
 import InformationIcon from "@/app/icons/InformationIcon";
-import { useQuery } from "@tanstack/react-query";
+
+import { getItineraryApi, getAllItineraryApi } from "@/app/apis/index";
 
 type FormValues = {
   airport: string | undefined;
@@ -32,7 +34,6 @@ export default function App() {
     handleSubmit,
     formState: { errors },
     getValues,
-    setValue,
     reset,
   } = useForm<FormValues>({
     defaultValues: {
