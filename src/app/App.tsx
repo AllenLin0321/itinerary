@@ -10,8 +10,17 @@ import CheckCircleIcon from "@/app/icons/CheckCircleIcon";
 import InformationIcon from "@/app/icons/InformationIcon";
 import { useQuery } from "@tanstack/react-query";
 
+type FormValues = {
+  airport: string | undefined;
+  flight: string;
+  id: string;
+  name: string;
+  note: string;
+  phone: string;
+};
+
 export default function App() {
-  const [itinerary, setItinerary] = useState(null);
+  const [itinerary, setItinerary] = useState<Array<{}> | null>(null);
 
   const { data: allItineraryData } = useQuery({
     queryKey: ["allItinerary"],
@@ -25,7 +34,7 @@ export default function App() {
     getValues,
     setValue,
     reset,
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       airport: "桃園國際機場 第一航廈",
     },
@@ -48,7 +57,7 @@ export default function App() {
     setItinerary(itineraryData);
   };
 
-  const getHintItineray = (data) => {
+  const getHintItineray = (data: any) => {
     if (!data) return "";
     const firstItineray = data.data[0];
     return firstItineray.AirlineID + firstItineray.FlightNumber;
@@ -79,8 +88,8 @@ export default function App() {
                 message: ERROR_MESSAGES.ONLY_ALPHABET_AND_NUMBER,
               },
 
-              onChange: (e) => {
-                return setValue("flight", e.target.value.toUpperCase());
+              onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                event.target.value = event.target?.value.toUpperCase();
               },
             }}
             errors={errors}
@@ -127,8 +136,8 @@ export default function App() {
                 value: /^[a-zA-Z0-9]+$/,
                 message: ERROR_MESSAGES.ONLY_ALPHABET_AND_NUMBER,
               },
-              onChange: (e) => {
-                return setValue("id", e.target.value.toUpperCase());
+              onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                event.target.value = event.target?.value.toUpperCase();
               },
             }}
             errors={errors}
